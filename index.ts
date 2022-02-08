@@ -15,6 +15,12 @@ function getPort(): number {
   }
 }
 
+app.get('/call-py', (req, res) => {
+  res.send({
+    ok: true
+  })
+});
+
 const port = getPort();
 app.listen(port, () => {
   console.log('Node server listening on port', port);
