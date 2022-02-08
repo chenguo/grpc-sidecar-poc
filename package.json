@@ -1,0 +1,27 @@
+{
+  "name": "grpc-sidecar-poc",
+  "version": "0.0.1",
+  "description": "\"Node <-> Python sidecar container POC\"",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenguo/grpc-sidecar-poc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenguo/grpc-sidecar-poc/issues"
+  },
+  "homepage": "https://github.com/chenguo/grpc-sidecar-poc#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.16",
+    "ts-node": "^10.5.0"
+  }
+}
