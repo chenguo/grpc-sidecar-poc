@@ -1,18 +1,27 @@
 syntax = "proto3";
 
+message InputData {
+  repeated int64 values = 1;
+}
+
+message OutputData {
+  int64 result = 1;
+}
+
 message Data {
   int64 value = 1;
   string label = 2;
 }
 
-message UnnecessarilyNestedInput {
-  Data input = 1;
+message NestedInput {
+  repeated Data input = 1;
 }
 
-message UnnecessarilyNestedOutput {
+message NestedOutput {
   Data output = 2;
 }
 
 service PySidecar {
-  rpc SumInput(stream UnnecessarilyNestedInput) returns (UnnecessarilyNestedOutput) {}
+  rpc SumInput(InputData) returns (OutputData) {}
+  rpc SumInputNested(NestedInput) returns (NestedOutput) {}
 }

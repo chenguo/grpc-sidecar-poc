@@ -151,4 +151,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-app/proto
+# generated files
+app/app_pb2.py
+app/app_pb2_grpc.py
