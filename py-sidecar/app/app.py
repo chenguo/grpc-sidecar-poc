@@ -1,7 +1,9 @@
 # example derived from https://github.com/grpc/grpc/tree/v1.43.0/examples/python/route_guide
 import asyncio
-import grpc
 import os
+
+from google.protobuf.json_format import MessageToDict, MessageToJson
+import grpc
 
 import app_pb2
 import app_pb2_grpc
@@ -23,10 +25,25 @@ class AppServicer(app_pb2_grpc.PySidecarServicer):
             input_data: app_pb2.InputData,
             unused_context) -> app_pb2.OutputData:
 
-        print('sum input request', input_data.values)
+        print('sum input request', MessageToJson(input_data))
         result = py_package.sum_inputs(input_data.values)
+
         output_data = app_pb2.OutputData(result=result)
         return output_data
+
+    def SumInputNested(
+            self,
+            input_data: app_pb2.NestedInput,
+            unused_context) -> app_pb2.NestedOutput:
+
+        print('sum input nested request', MessageToJson(input_data))
+
+        formatted_input = [{'value': d.value, 'label': d.label} for d in input_data.input]
+        result = py_package.sum_input_nested(formatted_input)
+
+        output_data = app_pb2.Data(value=result, label="result")
+        nested_output = app_pb2.NestedOutput(output=output_data)
+        return nested_output
 
 
 async def serve() -> None:
