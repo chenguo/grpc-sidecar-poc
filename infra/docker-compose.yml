@@ -1,11 +1,20 @@
 version: '3'
 services:
+  ts-service:
+    build:
+      dockerfile: infra/Dockerfile.ts-service
+      context: ../
+    ports:
+      - '9125:9125'
+    environment:
+      PORT: '9125'
+      SIDECAR: 'py-sidecar:9126'
+    command:
+      node --require ts-node/register app/index.ts
   py-sidecar:
     build:
       dockerfile: infra/Dockerfile.py-sidecar
       context: ../
-    ports:
-      - '9126:9126'
     environment:
       PORT: '9126'
     command:
