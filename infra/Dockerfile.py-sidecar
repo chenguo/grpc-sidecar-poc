@@ -5,10 +5,10 @@ WORKDIR /opt/py-sidecar
 
 ADD py-sidecar/app/app.py ./app/
 ADD py-sidecar/app/py_package.py ./app/
-ADD py-sidecar/codegen.sh .
+ADD scripts/gen-py-pb.sh .
 ADD py-sidecar/requirements.txt .
 
 COPY proto/ ./proto
 
 RUN pip install -r requirements.txt
-RUN ./codegen.sh
+RUN ./gen-py-pb.sh ./proto
