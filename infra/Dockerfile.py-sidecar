@@ -1,0 +1,14 @@
+FROM python:3.9
+
+RUN mkdir -p /opt/py-sidecar/app
+WORKDIR /opt/py-sidecar
+
+ADD py-sidecar/app/app.py ./app/
+ADD py-sidecar/app/py_package.py ./app/
+ADD py-sidecar/codegen.sh .
+ADD py-sidecar/requirements.txt .
+
+COPY proto/ ./proto
+
+RUN pip install -r requirements.txt
+RUN ./codegen.sh

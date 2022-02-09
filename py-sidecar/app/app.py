@@ -1,5 +1,6 @@
 # example derived from https://github.com/grpc/grpc/tree/v1.43.0/examples/python/route_guide
 import asyncio
+import logging
 import os
 
 from google.protobuf.json_format import MessageToDict, MessageToJson
@@ -25,7 +26,7 @@ class AppServicer(app_pb2_grpc.PySidecarServicer):
             input_data: app_pb2.InputData,
             unused_context) -> app_pb2.OutputData:
 
-        print('sum input request', MessageToJson(input_data))
+        logging.info(f'sum input request {MessageToJson(input_data)}')
         result = py_package.sum_inputs(input_data.values)
 
         output_data = app_pb2.OutputData(result=result)
@@ -36,7 +37,7 @@ class AppServicer(app_pb2_grpc.PySidecarServicer):
             input_data: app_pb2.NestedInput,
             unused_context) -> app_pb2.NestedOutput:
 
-        print('sum input nested request', MessageToJson(input_data))
+        logging.info(f'sum input nested request {MessageToJson(input_data)}')
 
         formatted_input = [{'value': d.value, 'label': d.label} for d in input_data.input]
         result = py_package.sum_input_nested(formatted_input)
@@ -56,10 +57,11 @@ async def serve() -> None:
     server.add_insecure_port(f'[::]:{str(port)}')
     await server.start()
 
-    print('GRPC listening on port', port)
+    logging.info(f'GRPC listening on port {port}')
 
     await server.wait_for_termination()
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     asyncio.get_event_loop().run_until_complete(serve())
