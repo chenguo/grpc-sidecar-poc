@@ -4,6 +4,9 @@ This project is meant to prove out a Typescript server invoking non-Typescript l
 
 The dev environment consists of a docker-compose with a Typescript HTTP server and a Python GRPC server. In a production kubernetes environment this would be two containers running on the same pod.
 
+The Python GRPC server emulates wrapping logic from an imported library, via the file `py-sidecar/app/py_package.py`, which contains the core application logic for this POC.
+
+
 ## Quickstart
 
 Make sure you have docker-compose installed. Then you can run the following commands to bring up the docker-compose environment:
