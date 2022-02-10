@@ -6,8 +6,8 @@ import grpc
 from add_things_pb2 import Data, NestedInput
 from add_things_pb2_grpc import AddThingsStub
 
-if __name__ == '__main__':
-    with grpc.insecure_channel('localhost:9126') as channel:
+if __name__ == "__main__":
+    with grpc.insecure_channel("localhost:9126") as channel:
         stub = AddThingsStub(channel)
 
         nested_input = [
@@ -18,7 +18,6 @@ if __name__ == '__main__':
             {
                 "value": 101,
                 "label": "bar",
-
             },
             {
                 "value": 102,
@@ -26,7 +25,7 @@ if __name__ == '__main__':
             },
         ]
 
-        print('nested sum input', nested_input)
+        print("nested sum input", nested_input)
 
         input_data = []
         for input_value in nested_input:
@@ -38,4 +37,4 @@ if __name__ == '__main__':
         input_data = NestedInput(input=input_data)
         output = stub.SumInputNested(input_data)
 
-        print('sum result', MessageToJson(output))
+        print("sum result", MessageToJson(output))
