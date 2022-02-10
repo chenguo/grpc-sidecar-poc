@@ -1,7 +1,7 @@
 // import { client } from './proto-shim';
 
 import * as grpc from '@grpc/grpc-js';
-import { InputData, OutputData, NestedInput, NestedOutput, PySidecarClient } from './gen/app';
+import { Data, InputData, OutputData, NestedInput, NestedOutput, PySidecarClient } from './gen/app';
 
 const sidecarRoute = process.env.SIDECAR || 'localhost:9126';
 console.log('Connecting to GRPC sidecar at ', sidecarRoute);
@@ -17,13 +17,13 @@ export async function sidecarSum(x: number, y: number): Promise<OutputData> {
 
 export async function sidecarSumNested(x: number, y: number): Promise<NestedOutput> {
   const input = new NestedInput({
-    input: [{
+    input: [new Data({
       value: x,
       label: 'x',
-    }, {
+    }), new Data({
       value: y,
       label: 'y',
-    }]
+    })]
   });
 
   return client.SumInputNested(input);

@@ -5,7 +5,6 @@ WORKDIR /opt/ts-service
 
 ADD package.json .
 ADD package-lock.json .
-ADD tsconfig.json .
 
 COPY proto/ ./proto
 COPY app/ ./app

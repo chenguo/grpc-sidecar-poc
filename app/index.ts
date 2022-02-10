@@ -22,7 +22,7 @@ app.get('/sum', async (req, res) => {
       req.query.x as unknown as number,
       req.query.y as unknown as number,
     );
-    res.send(resp);
+    res.send(resp.toObject());
   } catch (error) {
     console.log('error', error);
   }
@@ -35,7 +35,7 @@ app.get('/sum-nested', async (req, res) => {
       req.query.x as unknown as number,
       req.query.y as unknown as number,
     );
-    res.send(resp);
+    res.send(resp.toObject());
   } catch (error) {
     console.log('error', error);
   }
