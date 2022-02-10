@@ -1,11 +1,11 @@
 // import { client } from './proto-shim';
 
 import * as grpc from '@grpc/grpc-js';
-import { Data, InputData, OutputData, NestedInput, NestedOutput, PySidecarClient } from './gen/app';
+import { Data, InputData, OutputData, NestedInput, NestedOutput, AddThingsClient } from './gen/add-things';
 
 const sidecarRoute = process.env.SIDECAR || 'localhost:9126';
 console.log('Connecting to GRPC sidecar at ', sidecarRoute);
-const client = new PySidecarClient(
+const client = new AddThingsClient(
   sidecarRoute,
   grpc.credentials.createInsecure()
 );

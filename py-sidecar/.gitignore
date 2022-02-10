@@ -152,5 +152,5 @@ cython_debug/
 #.idea/
 
 # generated files
-app/app_pb2.py
-app/app_pb2_grpc.py
+app/*pb2.py
+app/*pb2_grpc.py

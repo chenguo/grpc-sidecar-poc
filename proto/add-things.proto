@@ -21,7 +21,7 @@ message NestedOutput {
   Data output = 2;
 }
 
-service PySidecar {
+service AddThings {
   rpc SumInput(InputData) returns (OutputData) {}
   rpc SumInputNested(NestedInput) returns (NestedOutput) {}
 }

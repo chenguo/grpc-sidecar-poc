@@ -6,11 +6,9 @@ WORKDIR /opt/py-sidecar
 ADD py-sidecar/app/app.py ./app/
 ADD py-sidecar/app/py_package.py ./app/
 ADD py-sidecar/requirements.txt .
+ADD scripts/gen-py-pb.sh .
 
 COPY proto/ ./proto
 
-RUN mkdir -p ./scripts
-ADD scripts/gen-py-pb.sh ./scripts
-
 RUN pip install -r requirements.txt
-RUN ./scripts/gen-py-pb.sh ./proto
+RUN ./gen-py-pb.sh ./proto
