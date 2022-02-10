@@ -10,13 +10,7 @@ COPY proto/ ./proto
 COPY app/ ./app
 
 RUN mkdir -p ./scripts
-
 ADD scripts/gen-ts-pb.sh ./scripts
 
 RUN npm ci
-
-# in a real project, do a multi-stage build
-# and just do this in the builder image
-RUN npm install --only=dev
-
 RUN ./scripts/gen-ts-pb.sh
