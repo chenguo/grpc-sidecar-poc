@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "target": "es2019",
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "esModuleInterop": true
